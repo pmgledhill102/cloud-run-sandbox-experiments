@@ -1,4 +1,4 @@
-# An egress allowlist for Cloud Run sandboxes, over stdin and stdout
+# Networking Cloud Run sandboxes over stdin and stdout
 
 <!-- cspell:ignore gVisor yamux rootfs FIFOs nip localtest SPIFFE SPIRE dmqrw mpnbt setgroups setuid socat keepalive CGNAT grns GOFLAGS pypi modcacherw RUNASROOT -->
 

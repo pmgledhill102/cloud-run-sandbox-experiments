@@ -1,4 +1,4 @@
-# An egress allowlist for Cloud Run sandboxes, over stdin and stdout
+# Networking Cloud Run sandboxes over stdin and stdout
 
 <!-- cspell:ignore yamux gVisor -->
 
