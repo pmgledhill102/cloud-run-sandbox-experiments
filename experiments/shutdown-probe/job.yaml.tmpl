@@ -1,0 +1,30 @@
+# Cloud Run job for the shutdown probe. Rendered by run.sh: PROJECT, IMAGE, SCRIPT.
+apiVersion: run.googleapis.com/v1
+kind: Job
+metadata:
+  name: shutdown-probe
+  labels:
+    cloud.googleapis.com/location: europe-west1
+  annotations:
+    run.googleapis.com/launch-stage: BETA
+spec:
+  template:
+    spec:
+      taskCount: 1
+      template:
+        spec:
+          serviceAccountName: agent-job@${PROJECT}.iam.gserviceaccount.com
+          timeoutSeconds: 1800
+          maxRetries: 0
+          containers:
+            - name: probe
+              image: ${IMAGE}
+              command: ["python3", "-c", "import os; exec(os.environ['PROBE'])"]
+              env:
+                - name: PROBE
+                  value: ""
+              sandboxLauncher: true
+              resources:
+                limits:
+                  cpu: "2"
+                  memory: 2Gi

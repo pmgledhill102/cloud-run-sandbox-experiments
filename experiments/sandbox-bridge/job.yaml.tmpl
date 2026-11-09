@@ -1,0 +1,27 @@
+# Cloud Run job for the sandbox-bridge rig. Rendered by run.sh: PROJECT, IMAGE.
+apiVersion: run.googleapis.com/v1
+kind: Job
+metadata:
+  name: sandbox-bridge-rig
+  labels:
+    cloud.googleapis.com/location: europe-west1
+  annotations:
+    run.googleapis.com/launch-stage: BETA
+spec:
+  template:
+    spec:
+      taskCount: 1
+      template:
+        spec:
+          serviceAccountName: rig-job@${PROJECT}.iam.gserviceaccount.com
+          timeoutSeconds: 900
+          maxRetries: 0
+          containers:
+            - name: rig
+              image: ${IMAGE}
+              args: ["all"]
+              sandboxLauncher: true
+              resources:
+                limits:
+                  cpu: "2"
+                  memory: 4Gi

@@ -1,0 +1,7 @@
+# Egress allowlist for the sandbox-agent POC. Package registries an
+# agent may need, and nothing else. The model APIs are NOT here: models are
+# reached only through model-gateway. example.com is deliberately absent.
+# cspell:ignore pypi pythonhosted npmjs
+pypi.org
+files.pythonhosted.org
+registry.npmjs.org

@@ -1,0 +1,14 @@
+/* Shared Google Cloud-style diagram styles. */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=block');
+html, body { margin: 0; background: #FFFFFF; }
+svg { display: block; font-family: Roboto, Arial, sans-serif; }
+.t-title { font-size: 30px; font-weight: 700; fill: #202124; }
+.t-sub { font-size: 17px; fill: #5F6368; }
+.t-zone { font-size: 15px; font-weight: 500; fill: #5F6368; letter-spacing: .2px; }
+.t-card { font-size: 17px; font-weight: 500; fill: #202124; }
+.t-card2 { font-size: 13.5px; fill: #5F6368; }
+.t-note { font-size: 14px; fill: #5F6368; }
+.t-step { font-size: 14px; font-weight: 700; fill: #FFFFFF; }
+.card { fill: #FFFFFF; stroke: #DADCE0; stroke-width: 1.5; }
+.arrow { stroke: #5F6368; stroke-width: 2; fill: none; }
+.t-src { font-size: 12.5px; fill: #80868B; }

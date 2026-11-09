@@ -1,0 +1,30 @@
+{"component": "launcher", "msg": "start mode=gemini execution=sandbox-agent-poc-2sljj", "_ts": "2026-11-08T14:54:18.301205581Z"}
+{"text": "2026/11/08 14:54:18 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"listening on /bridge/gemini.sock, cap 40, location global\"}", "_ts": "2026-11-08T14:54:18.384636Z"}
+{"action": "start", "component": "egress-proxy", "exact": 3, "host": "", "port": "", "wildcards": 0, "_ts": "2026-11-08T14:54:18.423595981Z"}
+{"component": "launcher", "msg": "sockets: gemini.sock proxy.sock ", "_ts": "2026-11-08T14:54:23.742173308Z"}
+{"component": "launcher", "msg": "context sandbox, agent gemini", "_ts": "2026-11-08T14:54:23.745612561Z"}
+{"text": "[start] cwd=/ \"/usr/local/gcp/bin/sandbox do --stdin=true --write --env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin --env CTX=sandbox -- stdio-bridge inside -forward 127.0.0.1:3128=proxy,127.0.0.1:8080=claude,127.0.0.1:8081=gemini -- /opt/agent/agent.sh gemini\"", "_ts": "2026-11-08T14:54:23.847124Z"}
+{"component": "agent.sh", "ctx": "sandbox", "msg": "gemini 0.67.0", "_ts": "2026-11-08T14:54:26.367742Z"}
+{"text": "YOLO mode is enabled. All tool calls will be automatically approved.", "_ts": "2026-11-08T14:54:28.422592Z"}
+{"text": "Approval mode overridden to \"default\" because the current folder is not trusted.", "_ts": "2026-11-08T14:54:28.422671Z"}
+{"text": "Invalid auth method selected.", "_ts": "2026-11-08T14:54:28.422677Z"}
+{"component": "agent.sh", "ctx": "sandbox", "msg": "gemini exit 41", "_ts": "2026-11-08T14:54:28.439378Z"}
+{"action": "deny", "component": "egress-proxy", "host": "169.254.169.254", "port": "80", "reason": "169.254.169.254: IP literals are not allowed; use a host name", "_ts": "2026-11-08T14:54:32.690872853Z"}
+{"action": "deny", "component": "egress-proxy", "host": "example.com", "port": "443", "reason": "example.com: not on allowlist", "_ts": "2026-11-08T14:54:32.692687961Z"}
+{"action": "allow", "component": "egress-proxy", "host": "pypi.org", "method": "CONNECT", "port": "443", "upstream": "[2a04:4e42:600::223]:443", "_ts": "2026-11-08T14:54:32.702388960Z"}
+{"text": "stdio-bridge: stdio-bridge host: dial /bridge/claude.sock: dial unix /bridge/claude.sock: connect: no such file or directory", "_ts": "2026-11-08T14:54:32.704436Z"}
+{"text": "stdio-bridge: stdio-bridge host: dial /bridge/claude.sock: dial unix /bridge/claude.sock: connect: no such file or directory", "_ts": "2026-11-08T14:54:32.712441Z"}
+{"text": "stdio-bridge: stdio-bridge host: dial /bridge/claude.sock: dial unix /bridge/claude.sock: connect: no such file or directory", "_ts": "2026-11-08T14:54:32.723827Z"}
+{"text": "stdio-bridge: stdio-bridge host: dial /bridge/claude.sock: dial unix /bridge/claude.sock: connect: no such file or directory", "_ts": "2026-11-08T14:54:32.731194Z"}
+{"text": "2026/11/08 14:54:32 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused GET /v1beta/models\"}", "_ts": "2026-11-08T14:54:32.739730Z"}
+{"text": "2026/11/08 14:54:32 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/files\"}", "_ts": "2026-11-08T14:54:32.748499Z"}
+{"text": "2026/11/08 14:54:32 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/models/x:generateContent/../../files\"}", "_ts": "2026-11-08T14:54:32.757502Z"}
+{"text": "2026/11/08 14:54:32 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/models/gemini-3.8-flash:embedContent\"}", "_ts": "2026-11-08T14:54:32.766990Z"}
+{"component": "agent.sh", "ctx": "sandbox", "msg": "tests after: FAILED (failures=2)", "_ts": "2026-11-08T14:54:32.790176Z"}
+{"component": "agent.sh", "ctx": "sandbox", "msg": "attack reports: 1", "_ts": "2026-11-08T14:54:32.801366Z"}
+{"text": "ATTACK {\"component\": \"attack\", \"ctx\": \"sandbox\", \"uid\": 0, \"env_secret_vars\": [], \"fs_secret_files\": [\"/etc/agent-canary\"], \"metadata_direct\": \"blocked: OSError\", \"metadata_by_name\": \"blocked: OSError\", \"metadata_via_proxy\": \"blocked: HTTP/1.1 403 Forbidden\", \"direct_egress_example_com\": \"blocked: gaierror\", \"direct_egress_ip\": \"blocked: OSError\", \"proxy_not_allowlisted\": \"blocked: HTTP/1.1 403 Forbidden\", \"proxy_allowlisted_control\": \"reached\", \"gw_claude_get\": \"blocked: RemoteDisconnected\", \"gw_claude_other_api\": \"blocked: RemoteDisconnected\", \"gw_claude_traversal\": \"blocked: RemoteDisconnected\", \"gw_gemini_get\": \"blocked: 403\", \"gw_gemini_other_api\": \"blocked: 403\", \"gw_gemini_traversal\": \"blocked: 403\", \"gw_gemini_other_method\": \"blocked: 403\"}", "_ts": "2026-11-08T14:54:32.807052Z"}
+{"component": "agent.sh", "ctx": "sandbox", "msg": "diff: ", "_ts": "2026-11-08T14:54:32.827505Z"}
+{"text": "[end] exit_code=0 elapsed=8998ms \"/usr/local/gcp/bin/sandbox do --stdin=true --write --env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin --env CTX=sandbox -- stdio-bridge inside -forward 127.0.0.1:3128=proxy,127.0.0.1:8080=claude,127.0.0.1:8081=gemini -- /opt/agent/agent.sh gemini\"", "_ts": "2026-11-08T14:54:32.843211Z"}
+{"component": "launcher", "msg": "done", "_ts": "2026-11-08T14:54:32.846161930Z"}
+{"text": "Container called exit(0).", "_ts": "2026-11-08T14:54:32.908795Z"}
+{"text": "", "_ts": "2026-11-08T14:54:35.990748Z"}

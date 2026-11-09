@@ -1,0 +1,9 @@
+# Allowlist for the sandbox-bridge rig. example.com is deliberately absent.
+# cspell:ignore localtest
+api.github.com
+speed.cloudflare.com
+# Names that resolve to non-public addresses, to test the proxy's resolution check.
+localtest.me
+*.nip.io
+mixed.rig.test
+private.rig.test
