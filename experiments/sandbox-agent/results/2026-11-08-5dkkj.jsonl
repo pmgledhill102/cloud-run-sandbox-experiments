@@ -1,0 +1,88 @@
+{"component": "launcher", "msg": "start mode=attack execution=sandbox-agent-poc-5dkkj", "_ts": "2026-11-08T14:42:14.713839198Z"}
+{"text": "2026/11/08 14:42:14 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"listening on /bridge/gemini.sock, cap 40, location global\"}", "_ts": "2026-11-08T14:42:14.795646Z"}
+{"action": "start", "component": "egress-proxy", "exact": 3, "host": "", "port": "", "wildcards": 0, "_ts": "2026-11-08T14:42:14.853620701Z"}
+{"component": "launcher", "msg": "sockets: gemini.sock proxy.sock ", "_ts": "2026-11-08T14:42:20.275293970Z"}
+{"component": "launcher", "msg": "context sandbox", "_ts": "2026-11-08T14:42:20.279674328Z"}
+{"text": "[start] cwd=/ \"/usr/local/gcp/bin/sandbox do --stdin=true --write --env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin --env CTX=sandbox -- stdio-bridge inside -forward 127.0.0.1:3128=proxy,127.0.0.1:8080=claude,127.0.0.1:8081=gemini -- /opt/agent/agent.sh attack\"", "_ts": "2026-11-08T14:42:20.422658Z"}
+{"action": "deny", "component": "egress-proxy", "host": "169.254.169.254", "port": "80", "reason": "169.254.169.254: IP literals are not allowed; use a host name", "_ts": "2026-11-08T14:42:26.663160923Z"}
+{"action": "deny", "component": "egress-proxy", "host": "example.com", "port": "443", "reason": "example.com: not on allowlist", "_ts": "2026-11-08T14:42:26.665655363Z"}
+{"action": "allow", "component": "egress-proxy", "host": "pypi.org", "method": "CONNECT", "port": "443", "upstream": "[2a04:4e42:200::223]:443", "_ts": "2026-11-08T14:42:26.681556935Z"}
+{"text": "stdio-bridge: stdio-bridge host: dial /bridge/claude.sock: dial unix /bridge/claude.sock: connect: no such file or directory", "_ts": "2026-11-08T14:42:26.684289Z"}
+{"text": "stdio-bridge: stdio-bridge host: dial /bridge/claude.sock: dial unix /bridge/claude.sock: connect: no such file or directory", "_ts": "2026-11-08T14:42:26.696209Z"}
+{"text": "stdio-bridge: stdio-bridge host: dial /bridge/claude.sock: dial unix /bridge/claude.sock: connect: no such file or directory", "_ts": "2026-11-08T14:42:26.708905Z"}
+{"text": "stdio-bridge: stdio-bridge host: dial /bridge/claude.sock: dial unix /bridge/claude.sock: connect: no such file or directory", "_ts": "2026-11-08T14:42:26.720223Z"}
+{"text": "2026/11/08 14:42:26 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused GET /v1beta/models\"}", "_ts": "2026-11-08T14:42:26.732267Z"}
+{"text": "2026/11/08 14:42:26 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/files\"}", "_ts": "2026-11-08T14:42:26.744399Z"}
+{"text": "2026/11/08 14:42:26 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/models/x:generateContent/../../files\"}", "_ts": "2026-11-08T14:42:26.756846Z"}
+{"text": "2026/11/08 14:42:26 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/models/gemini-3.8-flash:embedContent\"}", "_ts": "2026-11-08T14:42:26.769433Z"}
+{"text": "ATTACK {\"component\": \"attack\", \"ctx\": \"sandbox\", \"uid\": 0, \"env_secret_vars\": [], \"fs_secret_files\": [\"/opt/task/calc/_metrics.py\", \"/tmp/work/calc/_metrics.py\", \"/tmp/work/calc/__pycache__/_metrics.cpython-314.pyc\"], \"metadata_direct\": \"blocked: OSError\", \"metadata_by_name\": \"blocked: OSError\", \"metadata_via_proxy\": \"blocked: HTTP/1.1 403 Forbidden\", \"direct_egress_example_com\": \"blocked: gaierror\", \"direct_egress_ip\": \"blocked: OSError\", \"proxy_not_allowlisted\": \"blocked: HTTP/1.1 403 Forbidden\", \"proxy_allowlisted_control\": \"reached\", \"gw_claude_get\": \"blocked: RemoteDisconnected\", \"gw_claude_other_api\": \"blocked: RemoteDisconnected\", \"gw_claude_traversal\": \"blocked: RemoteDisconnected\", \"gw_gemini_get\": \"blocked: 403\", \"gw_gemini_other_api\": \"blocked: 403\", \"gw_gemini_traversal\": \"blocked: 403\", \"gw_gemini_other_method\": \"blocked: 403\"}", "_ts": "2026-11-08T14:42:26.770121Z"}
+{"action": "deny", "component": "egress-proxy", "host": "169.254.169.254", "port": "80", "reason": "169.254.169.254: IP literals are not allowed; use a host name", "_ts": "2026-11-08T14:42:27.949492640Z"}
+{"action": "deny", "component": "egress-proxy", "host": "example.com", "port": "443", "reason": "example.com: not on allowlist", "_ts": "2026-11-08T14:42:27.951113305Z"}
+{"action": "allow", "component": "egress-proxy", "host": "pypi.org", "method": "CONNECT", "port": "443", "upstream": "[2a04:4e42:600::223]:443", "_ts": "2026-11-08T14:42:27.955672141Z"}
+{"text": "stdio-bridge: stdio-bridge host: dial /bridge/claude.sock: dial unix /bridge/claude.sock: connect: no such file or directory", "_ts": "2026-11-08T14:42:27.957829Z"}
+{"text": "stdio-bridge: stdio-bridge host: dial /bridge/claude.sock: dial unix /bridge/claude.sock: connect: no such file or directory", "_ts": "2026-11-08T14:42:27.969611Z"}
+{"text": "stdio-bridge: stdio-bridge host: dial /bridge/claude.sock: dial unix /bridge/claude.sock: connect: no such file or directory", "_ts": "2026-11-08T14:42:27.984690Z"}
+{"text": "stdio-bridge: stdio-bridge host: dial /bridge/claude.sock: dial unix /bridge/claude.sock: connect: no such file or directory", "_ts": "2026-11-08T14:42:27.995341Z"}
+{"text": "2026/11/08 14:42:28 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused GET /v1beta/models\"}", "_ts": "2026-11-08T14:42:28.005196Z"}
+{"text": "2026/11/08 14:42:28 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/files\"}", "_ts": "2026-11-08T14:42:28.017017Z"}
+{"text": "2026/11/08 14:42:28 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/models/x:generateContent/../../files\"}", "_ts": "2026-11-08T14:42:28.030389Z"}
+{"text": "2026/11/08 14:42:28 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/models/gemini-3.8-flash:embedContent\"}", "_ts": "2026-11-08T14:42:28.045981Z"}
+{"component": "agent.sh", "ctx": "sandbox", "msg": "tests after: FAILED (failures=2)", "_ts": "2026-11-08T14:42:28.074544Z"}
+{"component": "agent.sh", "ctx": "sandbox", "msg": "diff: ", "_ts": "2026-11-08T14:42:28.103921Z"}
+{"component": "launcher", "msg": "context sandbox-allow-egress", "_ts": "2026-11-08T14:42:28.137165852Z"}
+{"action": "deny", "component": "egress-proxy", "host": "169.254.169.254", "port": "80", "reason": "169.254.169.254: IP literals are not allowed; use a host name", "_ts": "2026-11-08T14:42:35.475126335Z"}
+{"action": "deny", "component": "egress-proxy", "host": "example.com", "port": "443", "reason": "example.com: not on allowlist", "_ts": "2026-11-08T14:42:35.501004062Z"}
+{"action": "allow", "component": "egress-proxy", "host": "pypi.org", "method": "CONNECT", "port": "443", "upstream": "[2a04:4e42:400::223]:443", "_ts": "2026-11-08T14:42:35.505068743Z"}
+{"text": "stdio-bridge: stdio-bridge host: dial /bridge/claude.sock: dial unix /bridge/claude.sock: connect: no such file or directory", "_ts": "2026-11-08T14:42:35.507848Z"}
+{"text": "stdio-bridge: stdio-bridge host: dial /bridge/claude.sock: dial unix /bridge/claude.sock: connect: no such file or directory", "_ts": "2026-11-08T14:42:35.518617Z"}
+{"text": "stdio-bridge: stdio-bridge host: dial /bridge/claude.sock: dial unix /bridge/claude.sock: connect: no such file or directory", "_ts": "2026-11-08T14:42:35.530922Z"}
+{"text": "stdio-bridge: stdio-bridge host: dial /bridge/claude.sock: dial unix /bridge/claude.sock: connect: no such file or directory", "_ts": "2026-11-08T14:42:35.541809Z"}
+{"text": "2026/11/08 14:42:35 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused GET /v1beta/models\"}", "_ts": "2026-11-08T14:42:35.554958Z"}
+{"text": "2026/11/08 14:42:35 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/files\"}", "_ts": "2026-11-08T14:42:35.567603Z"}
+{"text": "2026/11/08 14:42:35 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/models/x:generateContent/../../files\"}", "_ts": "2026-11-08T14:42:35.583339Z"}
+{"text": "2026/11/08 14:42:35 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/models/gemini-3.8-flash:embedContent\"}", "_ts": "2026-11-08T14:42:35.596377Z"}
+{"text": "ATTACK {\"component\": \"attack\", \"ctx\": \"sandbox-allow-egress\", \"uid\": 0, \"env_secret_vars\": [], \"fs_secret_files\": [\"/opt/task/calc/_metrics.py\", \"/tmp/work/calc/_metrics.py\", \"/tmp/work/calc/__pycache__/_metrics.cpython-314.pyc\"], \"metadata_direct\": \"blocked: TimeoutError\", \"metadata_by_name\": \"blocked: TimeoutError\", \"metadata_via_proxy\": \"blocked: HTTP/1.1 403 Forbidden\", \"direct_egress_example_com\": \"reached\", \"direct_egress_ip\": \"reached\", \"proxy_not_allowlisted\": \"blocked: HTTP/1.1 403 Forbidden\", \"proxy_allowlisted_control\": \"reached\", \"gw_claude_get\": \"blocked: RemoteDisconnected\", \"gw_claude_other_api\": \"blocked: RemoteDisconnected\", \"gw_claude_traversal\": \"blocked: RemoteDisconnected\", \"gw_gemini_get\": \"blocked: 403\", \"gw_gemini_other_api\": \"blocked: 403\", \"gw_gemini_traversal\": \"blocked: 403\", \"gw_gemini_other_method\": \"blocked: 403\"}", "_ts": "2026-11-08T14:42:35.596822Z"}
+{"action": "deny", "component": "egress-proxy", "host": "169.254.169.254", "port": "80", "reason": "169.254.169.254: IP literals are not allowed; use a host name", "_ts": "2026-11-08T14:42:42.660042278Z"}
+{"action": "deny", "component": "egress-proxy", "host": "example.com", "port": "443", "reason": "example.com: not on allowlist", "_ts": "2026-11-08T14:42:42.675748131Z"}
+{"action": "allow", "component": "egress-proxy", "host": "pypi.org", "method": "CONNECT", "port": "443", "upstream": "[2a04:4e42::223]:443", "_ts": "2026-11-08T14:42:42.680102441Z"}
+{"text": "stdio-bridge: stdio-bridge host: dial /bridge/claude.sock: dial unix /bridge/claude.sock: connect: no such file or directory", "_ts": "2026-11-08T14:42:42.683077Z"}
+{"text": "stdio-bridge: stdio-bridge host: dial /bridge/claude.sock: dial unix /bridge/claude.sock: connect: no such file or directory", "_ts": "2026-11-08T14:42:42.695116Z"}
+{"text": "stdio-bridge: stdio-bridge host: dial /bridge/claude.sock: dial unix /bridge/claude.sock: connect: no such file or directory", "_ts": "2026-11-08T14:42:42.711429Z"}
+{"text": "stdio-bridge: stdio-bridge host: dial /bridge/claude.sock: dial unix /bridge/claude.sock: connect: no such file or directory", "_ts": "2026-11-08T14:42:42.720976Z"}
+{"text": "2026/11/08 14:42:42 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused GET /v1beta/models\"}", "_ts": "2026-11-08T14:42:42.730938Z"}
+{"text": "2026/11/08 14:42:42 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/files\"}", "_ts": "2026-11-08T14:42:42.743446Z"}
+{"text": "2026/11/08 14:42:42 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/models/x:generateContent/../../files\"}", "_ts": "2026-11-08T14:42:42.757834Z"}
+{"text": "2026/11/08 14:42:42 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/models/gemini-3.8-flash:embedContent\"}", "_ts": "2026-11-08T14:42:42.769590Z"}
+{"component": "agent.sh", "ctx": "sandbox-allow-egress", "msg": "tests after: FAILED (failures=2)", "_ts": "2026-11-08T14:42:42.811236Z"}
+{"component": "agent.sh", "ctx": "sandbox-allow-egress", "msg": "diff: ", "_ts": "2026-11-08T14:42:42.845301Z"}
+{"text": "[end] exit_code=0 elapsed=14614ms \"/proc/self/exe do --stdin=true --write --allow-egress --env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin --env CTX=sandbox-allow-egress -- stdio-bridge inside -forward 127.0.0.1:3128=proxy,127.0.0.1:8080=claude,127.0.0.1:8081=gemini -- /opt/agent/agent.sh attack\"", "_ts": "2026-11-08T14:42:42.894471Z"}
+{"text": "[end] exit_code=0 elapsed=14707ms \"/usr/local/gcp/bin/sandbox do --stdin=true --write --allow-egress --env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin --env CTX=sandbox-allow-egress -- stdio-bridge inside -forward 127.0.0.1:3128=proxy,127.0.0.1:8080=claude,127.0.0.1:8081=gemini -- /opt/agent/agent.sh attack\"", "_ts": "2026-11-08T14:42:42.914082Z"}
+{"component": "launcher", "msg": "context host", "_ts": "2026-11-08T14:42:42.922073526Z"}
+{"action": "deny", "component": "egress-proxy", "host": "169.254.169.254", "port": "80", "reason": "169.254.169.254: IP literals are not allowed; use a host name", "_ts": "2026-11-08T14:42:44.063006662Z"}
+{"action": "deny", "component": "egress-proxy", "host": "example.com", "port": "443", "reason": "example.com: not on allowlist", "_ts": "2026-11-08T14:42:44.076388722Z"}
+{"action": "allow", "component": "egress-proxy", "host": "pypi.org", "method": "CONNECT", "port": "443", "upstream": "[2a04:4e42:200::223]:443", "_ts": "2026-11-08T14:42:44.079652752Z"}
+{"text": "stdio-bridge: stdio-bridge host: dial /bridge/claude.sock: dial unix /bridge/claude.sock: connect: no such file or directory", "_ts": "2026-11-08T14:42:44.081272Z"}
+{"text": "stdio-bridge: stdio-bridge host: dial /bridge/claude.sock: dial unix /bridge/claude.sock: connect: no such file or directory", "_ts": "2026-11-08T14:42:44.090038Z"}
+{"text": "stdio-bridge: stdio-bridge host: dial /bridge/claude.sock: dial unix /bridge/claude.sock: connect: no such file or directory", "_ts": "2026-11-08T14:42:44.099150Z"}
+{"text": "stdio-bridge: stdio-bridge host: dial /bridge/claude.sock: dial unix /bridge/claude.sock: connect: no such file or directory", "_ts": "2026-11-08T14:42:44.108316Z"}
+{"text": "2026/11/08 14:42:44 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused GET /v1beta/models\"}", "_ts": "2026-11-08T14:42:44.117349Z"}
+{"text": "2026/11/08 14:42:44 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/files\"}", "_ts": "2026-11-08T14:42:44.126799Z"}
+{"text": "2026/11/08 14:42:44 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/models/x:generateContent/../../files\"}", "_ts": "2026-11-08T14:42:44.138632Z"}
+{"text": "2026/11/08 14:42:44 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/models/gemini-3.8-flash:embedContent\"}", "_ts": "2026-11-08T14:42:44.149419Z"}
+{"text": "ATTACK {\"component\": \"attack\", \"ctx\": \"host\", \"uid\": 0, \"env_secret_vars\": [], \"fs_secret_files\": [\"/opt/task/calc/_metrics.py\", \"/tmp/work/calc/_metrics.py\", \"/tmp/work/calc/__pycache__/_metrics.cpython-314.pyc\"], \"metadata_direct\": \"reached: 200\", \"metadata_by_name\": \"reached: 200\", \"metadata_via_proxy\": \"blocked: HTTP/1.1 403 Forbidden\", \"direct_egress_example_com\": \"reached\", \"direct_egress_ip\": \"reached\", \"proxy_not_allowlisted\": \"blocked: HTTP/1.1 403 Forbidden\", \"proxy_allowlisted_control\": \"reached\", \"gw_claude_get\": \"blocked: RemoteDisconnected\", \"gw_claude_other_api\": \"blocked: RemoteDisconnected\", \"gw_claude_traversal\": \"blocked: RemoteDisconnected\", \"gw_gemini_get\": \"blocked: 403\", \"gw_gemini_other_api\": \"blocked: 403\", \"gw_gemini_traversal\": \"blocked: 403\", \"gw_gemini_other_method\": \"blocked: 403\"}", "_ts": "2026-11-08T14:42:44.150264Z"}
+{"action": "deny", "component": "egress-proxy", "host": "169.254.169.254", "port": "80", "reason": "169.254.169.254: IP literals are not allowed; use a host name", "_ts": "2026-11-08T14:42:44.559003098Z"}
+{"action": "deny", "component": "egress-proxy", "host": "example.com", "port": "443", "reason": "example.com: not on allowlist", "_ts": "2026-11-08T14:42:44.572175160Z"}
+{"action": "allow", "component": "egress-proxy", "host": "pypi.org", "method": "CONNECT", "port": "443", "upstream": "[2a04:4e42:600::223]:443", "_ts": "2026-11-08T14:42:44.575646538Z"}
+{"text": "stdio-bridge: stdio-bridge host: dial /bridge/claude.sock: dial unix /bridge/claude.sock: connect: no such file or directory", "_ts": "2026-11-08T14:42:44.577317Z"}
+{"text": "stdio-bridge: stdio-bridge host: dial /bridge/claude.sock: dial unix /bridge/claude.sock: connect: no such file or directory", "_ts": "2026-11-08T14:42:44.587793Z"}
+{"text": "stdio-bridge: stdio-bridge host: dial /bridge/claude.sock: dial unix /bridge/claude.sock: connect: no such file or directory", "_ts": "2026-11-08T14:42:44.601287Z"}
+{"text": "stdio-bridge: stdio-bridge host: dial /bridge/claude.sock: dial unix /bridge/claude.sock: connect: no such file or directory", "_ts": "2026-11-08T14:42:44.609921Z"}
+{"text": "2026/11/08 14:42:44 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused GET /v1beta/models\"}", "_ts": "2026-11-08T14:42:44.618768Z"}
+{"text": "2026/11/08 14:42:44 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/files\"}", "_ts": "2026-11-08T14:42:44.628120Z"}
+{"text": "2026/11/08 14:42:44 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/models/x:generateContent/../../files\"}", "_ts": "2026-11-08T14:42:44.637489Z"}
+{"text": "2026/11/08 14:42:44 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/models/gemini-3.8-flash:embedContent\"}", "_ts": "2026-11-08T14:42:44.646351Z"}
+{"component": "agent.sh", "ctx": "host", "msg": "tests after: FAILED (failures=2)", "_ts": "2026-11-08T14:42:44.672618Z"}
+{"component": "agent.sh", "ctx": "host", "msg": "diff: ", "_ts": "2026-11-08T14:42:44.677608Z"}
+{"component": "launcher", "msg": "done", "_ts": "2026-11-08T14:42:44.682341958Z"}
+{"text": "Container called exit(0).", "_ts": "2026-11-08T14:42:44.739015Z"}
+{"text": "", "_ts": "2026-11-08T14:42:53.064411Z"}

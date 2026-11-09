@@ -1,0 +1,86 @@
+{"component": "launcher", "msg": "start mode=attack execution=sandbox-agent-poc-c89qx", "_ts": "2026-11-08T14:47:15.766790413Z"}
+{"action": "start", "component": "egress-proxy", "exact": 3, "host": "", "port": "", "wildcards": 0, "_ts": "2026-11-08T14:47:15.875112814Z"}
+{"text": "2026/11/08 14:47:16 {\"component\":\"model-gateway\",\"backend\":\"claude\",\"msg\":\"listening on /bridge/claude.sock, cap 150\"}", "_ts": "2026-11-08T14:47:16.007348Z"}
+{"text": "2026/11/08 14:47:16 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"listening on /bridge/gemini.sock, cap 40, location global\"}", "_ts": "2026-11-08T14:47:16.007369Z"}
+{"component": "launcher", "msg": "sockets: claude.sock gemini.sock proxy.sock ", "_ts": "2026-11-08T14:47:16.069260837Z"}
+{"component": "launcher", "msg": "context sandbox", "_ts": "2026-11-08T14:47:16.073841821Z"}
+{"text": "[start] cwd=/ \"/usr/local/gcp/bin/sandbox do --stdin=true --write --env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin --env CTX=sandbox -- stdio-bridge inside -forward 127.0.0.1:3128=proxy,127.0.0.1:8080=claude,127.0.0.1:8081=gemini -- /opt/agent/agent.sh attack\"", "_ts": "2026-11-08T14:47:16.154355Z"}
+{"action": "deny", "component": "egress-proxy", "host": "169.254.169.254", "port": "80", "reason": "169.254.169.254: IP literals are not allowed; use a host name", "_ts": "2026-11-08T14:47:21.267266240Z"}
+{"action": "deny", "component": "egress-proxy", "host": "example.com", "port": "443", "reason": "example.com: not on allowlist", "_ts": "2026-11-08T14:47:21.268601271Z"}
+{"action": "allow", "component": "egress-proxy", "host": "pypi.org", "method": "CONNECT", "port": "443", "upstream": "[2a04:4e42::223]:443", "_ts": "2026-11-08T14:47:21.275763787Z"}
+{"text": "2026/11/08 14:47:21 {\"component\":\"model-gateway\",\"backend\":\"claude\",\"msg\":\"refused GET /v1/models\"}", "_ts": "2026-11-08T14:47:21.285224Z"}
+{"text": "2026/11/08 14:47:21 {\"component\":\"model-gateway\",\"backend\":\"claude\",\"msg\":\"refused POST /v1/files\"}", "_ts": "2026-11-08T14:47:21.294241Z"}
+{"text": "2026/11/08 14:47:21 {\"component\":\"model-gateway\",\"backend\":\"claude\",\"msg\":\"refused POST /v1/messages/../files\"}", "_ts": "2026-11-08T14:47:21.303071Z"}
+{"text": "2026/11/08 14:47:21 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused GET /v1beta/models\"}", "_ts": "2026-11-08T14:47:21.311973Z"}
+{"text": "2026/11/08 14:47:21 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/files\"}", "_ts": "2026-11-08T14:47:21.320513Z"}
+{"text": "2026/11/08 14:47:21 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/models/x:generateContent/../../files\"}", "_ts": "2026-11-08T14:47:21.331753Z"}
+{"text": "2026/11/08 14:47:21 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/models/gemini-3.8-flash:embedContent\"}", "_ts": "2026-11-08T14:47:21.340370Z"}
+{"text": "ATTACK {\"component\": \"attack\", \"ctx\": \"sandbox\", \"uid\": 0, \"env_secret_vars\": [], \"fs_secret_files\": [], \"metadata_direct\": \"blocked: OSError\", \"metadata_by_name\": \"blocked: OSError\", \"metadata_via_proxy\": \"blocked: HTTP/1.1 403 Forbidden\", \"direct_egress_example_com\": \"blocked: gaierror\", \"direct_egress_ip\": \"blocked: OSError\", \"proxy_not_allowlisted\": \"blocked: HTTP/1.1 403 Forbidden\", \"proxy_allowlisted_control\": \"reached\", \"gw_claude_get\": \"blocked: 403\", \"gw_claude_other_api\": \"blocked: 403\", \"gw_claude_traversal\": \"blocked: 403\", \"gw_gemini_get\": \"blocked: 403\", \"gw_gemini_other_api\": \"blocked: 403\", \"gw_gemini_traversal\": \"blocked: 403\", \"gw_gemini_other_method\": \"blocked: 403\"}", "_ts": "2026-11-08T14:47:21.340981Z"}
+{"action": "deny", "component": "egress-proxy", "host": "169.254.169.254", "port": "80", "reason": "169.254.169.254: IP literals are not allowed; use a host name", "_ts": "2026-11-08T14:47:22.316027248Z"}
+{"action": "deny", "component": "egress-proxy", "host": "example.com", "port": "443", "reason": "example.com: not on allowlist", "_ts": "2026-11-08T14:47:22.317400909Z"}
+{"action": "allow", "component": "egress-proxy", "host": "pypi.org", "method": "CONNECT", "port": "443", "upstream": "[2a04:4e42:400::223]:443", "_ts": "2026-11-08T14:47:22.321347143Z"}
+{"text": "2026/11/08 14:47:22 {\"component\":\"model-gateway\",\"backend\":\"claude\",\"msg\":\"refused GET /v1/models\"}", "_ts": "2026-11-08T14:47:22.330181Z"}
+{"text": "2026/11/08 14:47:22 {\"component\":\"model-gateway\",\"backend\":\"claude\",\"msg\":\"refused POST /v1/files\"}", "_ts": "2026-11-08T14:47:22.341875Z"}
+{"text": "2026/11/08 14:47:22 {\"component\":\"model-gateway\",\"backend\":\"claude\",\"msg\":\"refused POST /v1/messages/../files\"}", "_ts": "2026-11-08T14:47:22.348618Z"}
+{"text": "2026/11/08 14:47:22 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused GET /v1beta/models\"}", "_ts": "2026-11-08T14:47:22.355730Z"}
+{"text": "2026/11/08 14:47:22 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/files\"}", "_ts": "2026-11-08T14:47:22.364489Z"}
+{"text": "2026/11/08 14:47:22 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/models/x:generateContent/../../files\"}", "_ts": "2026-11-08T14:47:22.373037Z"}
+{"text": "2026/11/08 14:47:22 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/models/gemini-3.8-flash:embedContent\"}", "_ts": "2026-11-08T14:47:22.381452Z"}
+{"component": "agent.sh", "ctx": "sandbox", "msg": "tests after: FAILED (failures=2)", "_ts": "2026-11-08T14:47:22.407105Z"}
+{"component": "agent.sh", "ctx": "sandbox", "msg": "diff: ", "_ts": "2026-11-08T14:47:22.432603Z"}
+{"text": "[end] exit_code=0 elapsed=6303ms \"/usr/local/gcp/bin/sandbox do --stdin=true --write --env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin --env CTX=sandbox -- stdio-bridge inside -forward 127.0.0.1:3128=proxy,127.0.0.1:8080=claude,127.0.0.1:8081=gemini -- /opt/agent/agent.sh attack\"", "_ts": "2026-11-08T14:47:22.454802Z"}
+{"component": "launcher", "msg": "context sandbox-allow-egress", "_ts": "2026-11-08T14:47:22.460782319Z"}
+{"text": "[start] cwd=/ \"/usr/local/gcp/bin/sandbox do --stdin=true --write --allow-egress --env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin --env CTX=sandbox-allow-egress -- stdio-bridge inside -forward 127.0.0.1:3128=proxy,127.0.0.1:8080=claude,127.0.0.1:8081=gemini -- /opt/agent/agent.sh attack\"", "_ts": "2026-11-08T14:47:22.513948Z"}
+{"text": "[start] cwd=/ \"/proc/self/exe do --stdin=true --write --allow-egress --env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin --env CTX=sandbox-allow-egress -- stdio-bridge inside -forward 127.0.0.1:3128=proxy,127.0.0.1:8080=claude,127.0.0.1:8081=gemini -- /opt/agent/agent.sh attack\"", "_ts": "2026-11-08T14:47:22.567863Z"}
+{"action": "deny", "component": "egress-proxy", "host": "169.254.169.254", "port": "80", "reason": "169.254.169.254: IP literals are not allowed; use a host name", "_ts": "2026-11-08T14:47:29.597813106Z"}
+{"action": "deny", "component": "egress-proxy", "host": "example.com", "port": "443", "reason": "example.com: not on allowlist", "_ts": "2026-11-08T14:47:29.621156186Z"}
+{"action": "allow", "component": "egress-proxy", "host": "pypi.org", "method": "CONNECT", "port": "443", "upstream": "[2a04:4e42:600::223]:443", "_ts": "2026-11-08T14:47:29.624922929Z"}
+{"text": "2026/11/08 14:47:29 {\"component\":\"model-gateway\",\"backend\":\"claude\",\"msg\":\"refused GET /v1/models\"}", "_ts": "2026-11-08T14:47:29.634028Z"}
+{"text": "2026/11/08 14:47:29 {\"component\":\"model-gateway\",\"backend\":\"claude\",\"msg\":\"refused POST /v1/files\"}", "_ts": "2026-11-08T14:47:29.643969Z"}
+{"text": "2026/11/08 14:47:29 {\"component\":\"model-gateway\",\"backend\":\"claude\",\"msg\":\"refused POST /v1/messages/../files\"}", "_ts": "2026-11-08T14:47:29.653252Z"}
+{"text": "2026/11/08 14:47:29 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused GET /v1beta/models\"}", "_ts": "2026-11-08T14:47:29.661762Z"}
+{"text": "2026/11/08 14:47:29 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/files\"}", "_ts": "2026-11-08T14:47:29.670331Z"}
+{"text": "2026/11/08 14:47:29 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/models/x:generateContent/../../files\"}", "_ts": "2026-11-08T14:47:29.678815Z"}
+{"text": "2026/11/08 14:47:29 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/models/gemini-3.8-flash:embedContent\"}", "_ts": "2026-11-08T14:47:29.687281Z"}
+{"text": "ATTACK {\"component\": \"attack\", \"ctx\": \"sandbox-allow-egress\", \"uid\": 0, \"env_secret_vars\": [], \"fs_secret_files\": [], \"metadata_direct\": \"blocked: TimeoutError\", \"metadata_by_name\": \"blocked: TimeoutError\", \"metadata_via_proxy\": \"blocked: HTTP/1.1 403 Forbidden\", \"direct_egress_example_com\": \"reached\", \"direct_egress_ip\": \"reached\", \"proxy_not_allowlisted\": \"blocked: HTTP/1.1 403 Forbidden\", \"proxy_allowlisted_control\": \"reached\", \"gw_claude_get\": \"blocked: 403\", \"gw_claude_other_api\": \"blocked: 403\", \"gw_claude_traversal\": \"blocked: 403\", \"gw_gemini_get\": \"blocked: 403\", \"gw_gemini_other_api\": \"blocked: 403\", \"gw_gemini_traversal\": \"blocked: 403\", \"gw_gemini_other_method\": \"blocked: 403\"}", "_ts": "2026-11-08T14:47:29.687851Z"}
+{"action": "deny", "component": "egress-proxy", "host": "169.254.169.254", "port": "80", "reason": "169.254.169.254: IP literals are not allowed; use a host name", "_ts": "2026-11-08T14:47:36.500655007Z"}
+{"action": "deny", "component": "egress-proxy", "host": "example.com", "port": "443", "reason": "example.com: not on allowlist", "_ts": "2026-11-08T14:47:36.518046431Z"}
+{"action": "allow", "component": "egress-proxy", "host": "pypi.org", "method": "CONNECT", "port": "443", "upstream": "[2a04:4e42:200::223]:443", "_ts": "2026-11-08T14:47:36.521606334Z"}
+{"text": "2026/11/08 14:47:36 {\"component\":\"model-gateway\",\"backend\":\"claude\",\"msg\":\"refused GET /v1/models\"}", "_ts": "2026-11-08T14:47:36.531620Z"}
+{"text": "2026/11/08 14:47:36 {\"component\":\"model-gateway\",\"backend\":\"claude\",\"msg\":\"refused POST /v1/files\"}", "_ts": "2026-11-08T14:47:36.543024Z"}
+{"text": "2026/11/08 14:47:36 {\"component\":\"model-gateway\",\"backend\":\"claude\",\"msg\":\"refused POST /v1/messages/../files\"}", "_ts": "2026-11-08T14:47:36.549980Z"}
+{"text": "2026/11/08 14:47:36 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused GET /v1beta/models\"}", "_ts": "2026-11-08T14:47:36.556687Z"}
+{"text": "2026/11/08 14:47:36 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/files\"}", "_ts": "2026-11-08T14:47:36.565022Z"}
+{"text": "2026/11/08 14:47:36 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/models/x:generateContent/../../files\"}", "_ts": "2026-11-08T14:47:36.573734Z"}
+{"text": "2026/11/08 14:47:36 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/models/gemini-3.8-flash:embedContent\"}", "_ts": "2026-11-08T14:47:36.581871Z"}
+{"component": "agent.sh", "ctx": "sandbox-allow-egress", "msg": "tests after: FAILED (failures=2)", "_ts": "2026-11-08T14:47:36.605531Z"}
+{"component": "agent.sh", "ctx": "sandbox-allow-egress", "msg": "diff: ", "_ts": "2026-11-08T14:47:36.624922Z"}
+{"text": "[end] exit_code=0 elapsed=14104ms \"/proc/self/exe do --stdin=true --write --allow-egress --env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin --env CTX=sandbox-allow-egress -- stdio-bridge inside -forward 127.0.0.1:3128=proxy,127.0.0.1:8080=claude,127.0.0.1:8081=gemini -- /opt/agent/agent.sh attack\"", "_ts": "2026-11-08T14:47:36.672189Z"}
+{"text": "[end] exit_code=0 elapsed=14174ms \"/usr/local/gcp/bin/sandbox do --stdin=true --write --allow-egress --env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin --env CTX=sandbox-allow-egress -- stdio-bridge inside -forward 127.0.0.1:3128=proxy,127.0.0.1:8080=claude,127.0.0.1:8081=gemini -- /opt/agent/agent.sh attack\"", "_ts": "2026-11-08T14:47:36.688033Z"}
+{"component": "launcher", "msg": "context host", "_ts": "2026-11-08T14:47:36.693939619Z"}
+{"action": "deny", "component": "egress-proxy", "host": "169.254.169.254", "port": "80", "reason": "169.254.169.254: IP literals are not allowed; use a host name", "_ts": "2026-11-08T14:47:37.602959310Z"}
+{"action": "deny", "component": "egress-proxy", "host": "example.com", "port": "443", "reason": "example.com: not on allowlist", "_ts": "2026-11-08T14:47:37.616632831Z"}
+{"action": "allow", "component": "egress-proxy", "host": "pypi.org", "method": "CONNECT", "port": "443", "upstream": "[2a04:4e42::223]:443", "_ts": "2026-11-08T14:47:37.619998584Z"}
+{"text": "2026/11/08 14:47:37 {\"component\":\"model-gateway\",\"backend\":\"claude\",\"msg\":\"refused GET /v1/models\"}", "_ts": "2026-11-08T14:47:37.626972Z"}
+{"text": "2026/11/08 14:47:37 {\"component\":\"model-gateway\",\"backend\":\"claude\",\"msg\":\"refused POST /v1/files\"}", "_ts": "2026-11-08T14:47:37.633374Z"}
+{"text": "2026/11/08 14:47:37 {\"component\":\"model-gateway\",\"backend\":\"claude\",\"msg\":\"refused POST /v1/messages/../files\"}", "_ts": "2026-11-08T14:47:37.639863Z"}
+{"text": "2026/11/08 14:47:37 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused GET /v1beta/models\"}", "_ts": "2026-11-08T14:47:37.646242Z"}
+{"text": "2026/11/08 14:47:37 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/files\"}", "_ts": "2026-11-08T14:47:37.652652Z"}
+{"text": "2026/11/08 14:47:37 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/models/x:generateContent/../../files\"}", "_ts": "2026-11-08T14:47:37.659466Z"}
+{"text": "2026/11/08 14:47:37 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/models/gemini-3.8-flash:embedContent\"}", "_ts": "2026-11-08T14:47:37.666518Z"}
+{"text": "ATTACK {\"component\": \"attack\", \"ctx\": \"host\", \"uid\": 0, \"env_secret_vars\": [], \"fs_secret_files\": [], \"metadata_direct\": \"reached: 200\", \"metadata_by_name\": \"reached: 200\", \"metadata_via_proxy\": \"blocked: HTTP/1.1 403 Forbidden\", \"direct_egress_example_com\": \"reached\", \"direct_egress_ip\": \"reached\", \"proxy_not_allowlisted\": \"blocked: HTTP/1.1 403 Forbidden\", \"proxy_allowlisted_control\": \"reached\", \"gw_claude_get\": \"blocked: 403\", \"gw_claude_other_api\": \"blocked: 403\", \"gw_claude_traversal\": \"blocked: 403\", \"gw_gemini_get\": \"blocked: 403\", \"gw_gemini_other_api\": \"blocked: 403\", \"gw_gemini_traversal\": \"blocked: 403\", \"gw_gemini_other_method\": \"blocked: 403\"}", "_ts": "2026-11-08T14:47:37.666792Z"}
+{"action": "deny", "component": "egress-proxy", "host": "169.254.169.254", "port": "80", "reason": "169.254.169.254: IP literals are not allowed; use a host name", "_ts": "2026-11-08T14:47:37.991973296Z"}
+{"action": "deny", "component": "egress-proxy", "host": "example.com", "port": "443", "reason": "example.com: not on allowlist", "_ts": "2026-11-08T14:47:38.004773397Z"}
+{"action": "allow", "component": "egress-proxy", "host": "pypi.org", "method": "CONNECT", "port": "443", "upstream": "[2a04:4e42:400::223]:443", "_ts": "2026-11-08T14:47:38.007849719Z"}
+{"text": "2026/11/08 14:47:38 {\"component\":\"model-gateway\",\"backend\":\"claude\",\"msg\":\"refused GET /v1/models\"}", "_ts": "2026-11-08T14:47:38.014615Z"}
+{"text": "2026/11/08 14:47:38 {\"component\":\"model-gateway\",\"backend\":\"claude\",\"msg\":\"refused POST /v1/files\"}", "_ts": "2026-11-08T14:47:38.023893Z"}
+{"text": "2026/11/08 14:47:38 {\"component\":\"model-gateway\",\"backend\":\"claude\",\"msg\":\"refused POST /v1/messages/../files\"}", "_ts": "2026-11-08T14:47:38.029630Z"}
+{"text": "2026/11/08 14:47:38 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused GET /v1beta/models\"}", "_ts": "2026-11-08T14:47:38.036081Z"}
+{"text": "2026/11/08 14:47:38 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/files\"}", "_ts": "2026-11-08T14:47:38.042569Z"}
+{"text": "2026/11/08 14:47:38 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/models/x:generateContent/../../files\"}", "_ts": "2026-11-08T14:47:38.050563Z"}
+{"text": "2026/11/08 14:47:38 {\"component\":\"model-gateway\",\"backend\":\"gemini\",\"msg\":\"refused POST /v1beta/models/gemini-3.8-flash:embedContent\"}", "_ts": "2026-11-08T14:47:38.057756Z"}
+{"component": "agent.sh", "ctx": "host", "msg": "tests after: FAILED (failures=2)", "_ts": "2026-11-08T14:47:38.080482Z"}
+{"component": "agent.sh", "ctx": "host", "msg": "diff: ", "_ts": "2026-11-08T14:47:38.085270Z"}
+{"component": "launcher", "msg": "done", "_ts": "2026-11-08T14:47:38.090038388Z"}
+{"text": "Container called exit(0).", "_ts": "2026-11-08T14:47:38.152718Z"}
+{"text": "", "_ts": "2026-11-08T14:47:41.667508Z"}

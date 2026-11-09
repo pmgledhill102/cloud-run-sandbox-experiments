@@ -1,0 +1,25 @@
+{"component": "launcher", "msg": "start mode=rootfs-probe execution=sandbox-bridge-rig-mpnbt", "_ts": "2026-11-07T20:02:17.509240761Z"}
+{"action": "start", "component": "egress-proxy", "exact": 5, "host": "", "port": "", "wildcards": 1, "_ts": "2026-11-07T20:02:17.634640083Z"}
+{"component": "launcher", "msg": "hosts entries added", "_ts": "2026-11-07T20:02:17.702455949Z"}
+{"text": "[start] cwd=/ \"/usr/local/gcp/bin/sandbox do --stdin=false --rootfs / -- /bin/sh -c echo ok; head -1 /etc/os-release\"", "_ts": "2026-11-07T20:02:36.799592Z"}
+{"text": "[end] exit_code=0 elapsed=174ms \"/usr/local/gcp/bin/sandbox do --stdin=false --rootfs / -- /bin/sh -c echo ok; head -1 /etc/os-release\"", "_ts": "2026-11-07T20:02:36.970360Z"}
+{"component": "launcher", "msg": "rootfs-probe [--rootfs /] rc=0 out=ok PRETTY_NAME=Ubuntu 26.04.1 LTS", "_ts": "2026-11-07T20:02:36.988433648Z"}
+{"text": "[start] cwd=/ \"/usr/local/gcp/bin/sandbox do --stdin=false --rootfs /opt/sbroot -- /bin/sh -c echo ok; head -1 /etc/os-release\"", "_ts": "2026-11-07T20:02:37.070137Z"}
+{"text": "[end] exit_code=1 elapsed=75ms \"/usr/local/gcp/bin/sandbox do --stdin=false --rootfs /opt/sbroot -- /bin/sh -c echo ok; head -1 /etc/os-release\"", "_ts": "2026-11-07T20:02:37.144965Z"}
+{"component": "launcher", "msg": "rootfs-probe [--rootfs /opt/sbroot] rc=1 out=FetchSpec failed: loading container: file does not exist Error: failed to exec in container: cmd.Wait(exec) failed: exit status 128", "_ts": "2026-11-07T20:02:37.156119728Z"}
+{"text": "[start] cwd=/ \"/usr/local/gcp/bin/sandbox do --stdin=false --rootfs /opt/sbroot/ -- /bin/sh -c echo ok; head -1 /etc/os-release\"", "_ts": "2026-11-07T20:02:37.226256Z"}
+{"text": "[end] exit_code=1 elapsed=58ms \"/usr/local/gcp/bin/sandbox do --stdin=false --rootfs /opt/sbroot/ -- /bin/sh -c echo ok; head -1 /etc/os-release\"", "_ts": "2026-11-07T20:02:37.284800Z"}
+{"component": "launcher", "msg": "rootfs-probe [--rootfs /opt/sbroot/] rc=1 out=FetchSpec failed: loading container: file does not exist Error: failed to exec in container: cmd.Wait(exec) failed: exit status 128", "_ts": "2026-11-07T20:02:37.295458298Z"}
+{"text": "[start] cwd=/ \"/usr/local/gcp/bin/sandbox do --stdin=false --rootfs /opt/sbroot --write -- /bin/sh -c echo ok; head -1 /etc/os-release\"", "_ts": "2026-11-07T20:02:37.365622Z"}
+{"text": "[end] exit_code=1 elapsed=75ms \"/usr/local/gcp/bin/sandbox do --stdin=false --rootfs /opt/sbroot --write -- /bin/sh -c echo ok; head -1 /etc/os-release\"", "_ts": "2026-11-07T20:02:37.444431Z"}
+{"component": "launcher", "msg": "rootfs-probe [--rootfs /opt/sbroot --write] rc=1 out=FetchSpec failed: loading container: file does not exist Error: failed to exec in container: cmd.Wait(exec) failed: exit status 128", "_ts": "2026-11-07T20:02:37.455633672Z"}
+{"text": "[start] cwd=/ \"/usr/local/gcp/bin/sandbox do --stdin=false --rootfs /opt/sbroot -w / -- /bin/sh -c echo ok; head -1 /etc/os-release\"", "_ts": "2026-11-07T20:02:37.527781Z"}
+{"text": "[end] exit_code=1 elapsed=91ms \"/usr/local/gcp/bin/sandbox do --stdin=false --rootfs /opt/sbroot -w / -- /bin/sh -c echo ok; head -1 /etc/os-release\"", "_ts": "2026-11-07T20:02:37.618587Z"}
+{"component": "launcher", "msg": "rootfs-probe [--rootfs /opt/sbroot -w /] rc=1 out=FetchSpec failed: loading container: file does not exist Error: failed to exec in container: cmd.Wait(exec) failed: exit status 128", "_ts": "2026-11-07T20:02:37.629565092Z"}
+{"text": "[start] cwd=/ \"/usr/local/gcp/bin/sandbox do --stdin=false --rootfs /tmp/sbroot-copy -- /bin/sh -c echo ok; head -1 /etc/os-release\"", "_ts": "2026-11-07T20:02:37.704839Z"}
+{"text": "[end] exit_code=1 elapsed=77ms \"/usr/local/gcp/bin/sandbox do --stdin=false --rootfs /tmp/sbroot-copy -- /bin/sh -c echo ok; head -1 /etc/os-release\"", "_ts": "2026-11-07T20:02:37.781887Z"}
+{"component": "launcher", "msg": "rootfs-probe [--rootfs /tmp/sbroot-copy] rc=1 out=FetchSpec failed: loading container: file does not exist Error: failed to exec in container: cmd.Wait(exec) failed: exit status 128", "_ts": "2026-11-07T20:02:37.793928246Z"}
+{"component": "launcher", "msg": "rootfs-probe: sbroot top=bin boot dev etc home lib lib64 media mnt opt proc root run sbin srv sys tmp usr var ", "_ts": "2026-11-07T20:02:37.810499723Z"}
+{"component": "launcher", "msg": "done", "_ts": "2026-11-07T20:02:37.814792220Z"}
+{"text": "Container called exit(0).", "_ts": "2026-11-07T20:02:37.862948Z"}
+{"text": "", "_ts": "2026-11-07T20:02:44.440059Z"}
