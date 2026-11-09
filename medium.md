@@ -145,13 +145,18 @@ own.
 4. **Treat files, command lines and logs as their own risks.** Network
    isolation doesn't cover them.
 
----
+## Try it yourself
 
-*This is an experiment on a preview feature, tested in November 2026, not a
-product or a finished security boundary. If Cloud Run adds an egress
-allowlist, the bridge becomes a workaround for a missing feature. The rigs,
-the gateway and prompts to rebuild them are at
-[github.com/pmgledhill102/cloud-run-sandbox-experiments](https://github.com/pmgledhill102/cloud-run-sandbox-experiments).
-The full write-up, with every source and caveat, is
-[`article.md`](https://github.com/pmgledhill102/cloud-run-sandbox-experiments/blob/main/article.md)
-there.*
+I've put everything on GitHub, at
+[pmgledhill102/cloud-run-sandbox-experiments](https://github.com/pmgledhill102/cloud-run-sandbox-experiments):
+
+- **The rigs and the model gateway.** Run the same tests in your own Google
+  Cloud project and compare your results with mine.
+- **The prompts.** Give them to a coding agent and it builds the bridge from
+  scratch, with acceptance tests that tell you whether it worked. If Cloud
+  Run has changed since November 2026, this is the better place to start.
+- **[The full write-up](https://github.com/pmgledhill102/cloud-run-sandbox-experiments/blob/main/article.md).**
+  Every source, every caveat and the raw results.
+
+It's an experiment on a preview feature, not a finished security boundary.
+And if Cloud Run adds an egress allowlist of its own, use that instead.
