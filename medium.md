@@ -15,9 +15,9 @@ registries.
 
 I built that middle ground without extra network products. The
 sandbox's connections travel over its own stdin and stdout to a proxy
-outside it, which allows only the listed hosts. Below: how that works, the
-two workloads I ran through it (GitHub Actions jobs and coding agents), and
-what it doesn't protect.
+just outside it, in the same container, which allows only the listed
+hostnames. Below: how that works, the two workloads I ran through it
+(GitHub Actions jobs and coding agents), and what it doesn't protect.
 
 ## What a Cloud Run sandbox gives you
 
@@ -27,19 +27,28 @@ doesn't inherit the container's environment or its metadata-server
 credentials, and sees the container's filesystem read-only, with its own
 in-memory `/tmp`. Inside, processes run as root on a gVisor kernel.
 
+**Everything here runs in one container on one Cloud Run instance.** The
+sandbox isn't a separate service or a second container: it's a child
+process the container starts. The proxy and the bridge are ordinary
+processes in that same container, outside the sandbox. Nothing else is
+deployed, and traffic leaves the instance only through those outside
+processes: the proxy here, and a model gateway later.
+
 ## Turning egress on
 
 `--allow-egress` gives the sandbox the whole internet. Pointing
 `HTTPS_PROXY` at an allowlisting proxy doesn't help, because the variable is
 only a setting: any process that ignores it connects straight out. Cloud Run gives a
 container no way to force traffic through a proxy. So the sandbox keeps its
-default of no network, and the proxy runs outside it.
+default of no network, and the proxy runs in the container, outside the
+sandbox.
 
 ![A proxy only controls traffic that has to go through it](img/fig4-proxy-vs-sandbox.png)
 
 To check that holds, I ran the same tests in the sandbox, in the sandbox with
-`--allow-egress` as a control, and in the host container. In the sandbox,
-everything except an allowed host through the proxy fails, and the controls
+`--allow-egress` as a control, and in the container itself, outside the
+sandbox. In the sandbox, everything except an allowed hostname through the
+proxy fails, and the controls
 show each of those tests can succeed. **The metadata server stays
 unreachable from the sandbox even with egress on.**
 
@@ -60,11 +69,12 @@ and a line sent mid-stream was answered straight away.
 
 ## The bridge
 
-A small Go program runs at both ends. The host end starts the sandbox as its
-own child process, so it owns that process's stdin and stdout, and runs a
-multiplexed session over them (HashiCorp's yamux). The inside end listens on
-local ports, and every connection becomes a stream that names the host
-service it wants. The host connects only to names it was configured with.
+A small Go program runs at both ends. The outside end, in the container,
+starts the sandbox as its own child process, so it owns that process's stdin
+and stdout, and runs a multiplexed session over them (HashiCorp's yamux).
+The inside end listens on local ports, and every connection becomes a stream
+that names the service it wants, such as the proxy. The outside end connects
+only to names it was configured with.
 
 The proxy is a standard allowlisting proxy. It allows a hostname on the list, on port
 443 or 80, and then connects to the address it checked, so an allowed name
@@ -89,17 +99,18 @@ on GitHub.
 
 An agent also needs a credential for its model. A key inside the sandbox
 could be read by anything the agent runs, including code a prompt injection
-talked it into running, so the credential stays on the host.
+talked it into running, so the credential stays outside the sandbox.
 The bridge already carries several named services, so I added a small
-**model gateway** next to the proxy.
+**model gateway**: one more process in the same container, next to the
+proxy.
 
 The agent talks plain HTTP to a local port with a placeholder key. The
 gateway accepts only model calls, swaps in the real credential and forwards
 them. For Claude, the key lives only in the gateway's memory. For Gemini,
-there's no key at all: the gateway calls Vertex AI with the host's own
-identity.
+there's no key at all: the gateway calls Vertex AI as the Cloud Run job's
+own service account.
 
-![The model credential stays on the host](img/fig8-model-gateway.png)
+![The model credential stays outside the sandbox](img/fig8-model-gateway.png)
 
 I tested it with a planted compromised dependency that ran whenever the agent
 ran the tests. **Claude Code fixed the task in 3 model requests, and Gemini
@@ -118,13 +129,14 @@ showing the attack could have worked.
 
 ## What it doesn't protect
 
-- **The sandbox can read the host's files.** Anything the host writes to
-  disk before starting the sandbox is readable inside. Keep secrets in
-  memory.
+- **The sandbox can read the container's files.** Anything the container
+  writes to disk before starting the sandbox is readable inside. Keep
+  secrets in memory.
 - **Command lines are logged.** Pass secrets over the bridge, never as
   arguments or environment.
 - **An allowlist checks only where a connection goes.** Through
-  an allowed GitHub host, an agent fetched github.com, which wasn't on the
+  an allowed GitHub hostname, an agent fetched github.com, which wasn't on
+  the
   list. Checking the server name in the TLS handshake would close the simple
   case.
 - **A model call is a way out.** Anything an agent can read, it can put in a
@@ -140,8 +152,8 @@ own.
    network that's already open is harder to get right.
 2. **Probe the boundary before designing around it.** A shared socket, the
    usual approach, didn't work here; stdin and stdout did.
-3. **Keep credentials on the host.** A gateway that adds them is simpler
-   than protecting a key inside the sandbox.
+3. **Keep credentials outside the sandbox.** A gateway that adds them is
+   simpler than protecting a key inside it.
 4. **Treat files, command lines and logs as their own risks.** Network
    isolation doesn't cover them.
 

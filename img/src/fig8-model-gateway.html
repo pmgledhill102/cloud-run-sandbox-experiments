@@ -14,5 +14,68 @@
   <g id="g-web"><circle cx="20" cy="20" r="16" fill="none" stroke="#188038" stroke-width="3"/><path d="M4 20 h32 M20 4 c-8 8 -8 24 0 32 c8 -8 8 -24 0 -32" stroke="#188038" stroke-width="2.5" fill="none"/></g>
   <g id="g-md"><rect x="5" y="8" width="30" height="24" rx="4" fill="#5F6368"/><circle cx="20" cy="20" r="5" fill="#fff"/></g>
 <marker id="ahr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#D93025"/></marker><marker id="ahb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1A73E8"/></marker></defs>
-<text x="40" y="52" class="t-title">The model credential stays on the host</text><text x="40" y="84" class="t-sub">A second host service on the same bridge. The agent calls its model with a placeholder key, and the gateway adds the real credential.</text><rect x="40" y="120" width="1080" height="250" rx="10" fill="#E8F0FE" stroke="#AECBFA" stroke-width="1.5"/><text x="60" y="146" class="t-zone" style="fill:#1967D2">Host container · trusted · holds every credential</text><g filter="url(#sh)"><rect x="70" y="200" width="300" height="70" rx="8" class="card"/></g><use href="#g-proc" x="84" y="215"/><text x="134" y="230" class="t-card">Bridge, host end</text><text x="134" y="251" class="t-card2">three named services</text><g filter="url(#sh)"><rect x="560" y="150" width="280" height="70" rx="8" class="card"/></g><use href="#g-shield" x="574" y="165"/><text x="624" y="180" class="t-card">Egress proxy</text><text x="624" y="201" class="t-card2">package registries only</text><g filter="url(#sh)"><rect x="560" y="260" width="280" height="70" rx="8" class="card"/></g><use href="#g-shield" x="574" y="275"/><text x="624" y="290" class="t-card">Model gateway</text><text x="624" y="311" class="t-card2">adds the real credential</text><path d="M374 225 C460 225 470 185 556 185" class="arrow" marker-end="url(#ah)"/><path d="M374 245 C460 245 470 295 556 295" class="arrow" marker-end="url(#ah)"/><g filter="url(#sh)"><rect x="1160" y="150" width="230" height="70" rx="8" class="card"/></g><use href="#g-web" x="1174" y="165"/><text x="1224" y="180" class="t-card">Allowed hosts</text><text x="1224" y="201" class="t-card2">package registries</text><g filter="url(#sh)"><rect x="1160" y="240" width="230" height="70" rx="8" class="card"/></g><use href="#g-run" x="1174" y="255"/><text x="1224" y="270" class="t-card">Anthropic API</text><text x="1224" y="291" class="t-card2">key from Secret Manager</text><g filter="url(#sh)"><rect x="1160" y="330" width="230" height="70" rx="8" class="card"/></g><use href="#g-run" x="1174" y="345"/><text x="1224" y="360" class="t-card">Vertex AI · Gemini</text><text x="1224" y="381" class="t-card2">host's own token, no key</text><path d="M844 185 H1156" stroke="#188038" stroke-width="2" fill="none" marker-end="url(#ahg)"/><path d="M844 285 C1000 285 1000 275 1156 275" stroke="#1A73E8" stroke-width="2" fill="none" marker-end="url(#ahb)"/><path d="M844 305 C1000 305 1000 365 1156 365" stroke="#1A73E8" stroke-width="2" fill="none" marker-end="url(#ahb)"/><path d="M220 274 V526" stroke="#1A73E8" stroke-width="10" stroke-linecap="round" fill="none" opacity=".9"/><path d="M200 274 V526" stroke="#1A73E8" stroke-width="3" fill="none" opacity=".55"/><path d="M240 274 V526" stroke="#1A73E8" stroke-width="3" fill="none" opacity=".55"/><rect x="258" y="398" width="330" height="56" rx="10" fill="#FFFFFF" stroke="#DADCE0"/><text x="272" y="421" class="t-card" style="font-size:15.5px">One pipe pair: stdin and stdout</text><text x="272" y="442" class="t-card2">proxy and model calls, multiplexed (yamux)</text><rect x="40" y="480" width="1080" height="240" rx="10" fill="#E6F4EA" stroke="#A8DAB5" stroke-width="1.5" stroke-dasharray="6 4"/><text x="60" y="706" class="t-zone" style="fill:#137333">Sandbox · untrusted · no network · no credential</text><g filter="url(#sh)"><rect x="70" y="530" width="300" height="70" rx="8" class="card"/></g><use href="#g-proc" x="84" y="545"/><text x="134" y="560" class="t-card">Bridge, inside end</text><text x="134" y="581" class="t-card2">local ports 3128, 8080, 8081</text><g filter="url(#sh)"><rect x="560" y="510" width="280" height="70" rx="8" class="card"/></g><use href="#g-proc" x="574" y="525"/><text x="624" y="540" class="t-card">Coding agent</text><text x="624" y="561" class="t-card2">Claude Code or Gemini CLI</text><g filter="url(#sh)"><rect x="560" y="610" width="280" height="70" rx="8" class="card"/></g><use href="#g-proc" x="574" y="625"/><text x="624" y="640" class="t-card">Compromised dependency</text><text x="624" y="661" class="t-card2">runs with the tests; finds no key</text><path d="M556 545 C470 545 460 555 374 555" class="arrow" marker-end="url(#ah)"/><path d="M556 645 C460 645 470 575 374 575" class="arrow" marker-end="url(#ah)"/><g filter="url(#sh)"><rect x="1160" y="560" width="230" height="70" rx="8" class="card"/></g><use href="#g-md" x="1174" y="575"/><text x="1224" y="590" class="t-card">Metadata server</text><text x="1224" y="611" class="t-card2">from the host only</text><path d="M1120 595 H1156" stroke="#D93025" stroke-width="2" stroke-dasharray="6 5" fill="none"/><circle cx="1138" cy="595" r="13" fill="#FFFFFF" stroke="#D93025" stroke-width="2"/><path d="M1132 589 l12 12 M1144 589 l-12 12" stroke="#D93025" stroke-width="2.5"/><text x="40" y="758" class="t-src">Tested 2026-11-08 with Claude Code 2.1.319 and Gemini CLI 0.67.0. The gateway accepts only POST to model endpoints, drops any credential the client sends, and caps requests per backend.</text>
+<text x="40" y="52" class="t-title">The model credential stays outside the sandbox</text>
+<text x="40" y="84" class="t-sub">One more process in the same container, on the same bridge. The agent calls its model with a placeholder key, and the gateway adds the real credential.</text>
+<rect x="40" y="108" width="1080" height="622" rx="12" fill="#E8F0FE" stroke="#1A73E8" stroke-width="2"/>
+<text x="60" y="138" class="t-zone" style="fill:#1967D2;font-weight:700">One Cloud Run instance · one container</text>
+<text x="60" y="160" class="t-zone" style="fill:#1967D2">Outside the sandbox · trusted · holds every credential</text>
+<rect x="70" y="225" width="300" height="70" rx="8" class="card"/>
+<use href="#g-proc" x="84" y="240"/>
+<text x="134" y="255" class="t-card">Bridge, outside end</text>
+<text x="134" y="276" class="t-card2">three named services</text>
+<rect x="560" y="180" width="280" height="70" rx="8" class="card"/>
+<use href="#g-shield" x="574" y="195"/>
+<text x="624" y="210" class="t-card">Egress proxy</text>
+<text x="624" y="231" class="t-card2">package registries only</text>
+<rect x="560" y="285" width="280" height="70" rx="8" class="card"/>
+<use href="#g-shield" x="574" y="300"/>
+<text x="624" y="315" class="t-card">Model gateway</text>
+<text x="624" y="336" class="t-card2">adds the real credential</text>
+<path d="M374 250 C460 250 470 215 556 215" class="arrow" marker-end="url(#ah)"/>
+<path d="M374 270 C460 270 470 320 556 320" class="arrow" marker-end="url(#ah)"/>
+<rect x="1160" y="180" width="230" height="70" rx="8" class="card"/>
+<use href="#g-web" x="1174" y="195"/>
+<text x="1224" y="210" class="t-card">Allowed hosts</text>
+<text x="1224" y="231" class="t-card2">package registries</text>
+<rect x="1160" y="270" width="230" height="70" rx="8" class="card"/>
+<use href="#g-run" x="1174" y="285"/>
+<text x="1224" y="300" class="t-card">Anthropic API</text>
+<text x="1224" y="321" class="t-card2">key from Secret Manager</text>
+<rect x="1160" y="360" width="230" height="70" rx="8" class="card"/>
+<use href="#g-run" x="1174" y="375"/>
+<text x="1224" y="390" class="t-card">Vertex AI · Gemini</text>
+<text x="1224" y="411" class="t-card2">job's own token, no key</text>
+<path d="M844 215 H1156" stroke="#188038" stroke-width="2.5" fill="none" marker-end="url(#ahg)"/>
+<path d="M844 310 C1000 310 1000 305 1156 305" stroke="#1A73E8" stroke-width="2.5" fill="none" marker-end="url(#ahb)"/>
+<path d="M844 330 C1000 330 1000 395 1156 395" stroke="#1A73E8" stroke-width="2.5" fill="none" marker-end="url(#ahb)"/>
+<path d="M220 299 V526" stroke="#1A73E8" stroke-width="10" stroke-linecap="round" fill="none" opacity=".9"/>
+<path d="M200 299 V526" stroke="#1A73E8" stroke-width="3" fill="none" opacity=".55"/>
+<path d="M240 299 V526" stroke="#1A73E8" stroke-width="3" fill="none" opacity=".55"/>
+<rect x="258" y="385" width="330" height="56" rx="10" fill="#FFFFFF" stroke="#DADCE0"/>
+<text x="272" y="408" class="t-card" style="font-size:15.5px">One pipe pair: stdin and stdout</text>
+<text x="272" y="429" class="t-card2">proxy and model calls, multiplexed (yamux)</text>
+<rect x="60" y="470" width="1040" height="245" rx="10" fill="#E6F4EA" stroke="#A8DAB5" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="80" y="701" class="t-zone" style="fill:#137333">Sandbox · untrusted · no network · no credential</text>
+<rect x="70" y="530" width="300" height="70" rx="8" class="card"/>
+<use href="#g-proc" x="84" y="545"/>
+<text x="134" y="560" class="t-card">Bridge, inside end</text>
+<text x="134" y="581" class="t-card2">local ports 3128, 8080, 8081</text>
+<rect x="560" y="495" width="280" height="70" rx="8" class="card"/>
+<use href="#g-proc" x="574" y="510"/>
+<text x="624" y="525" class="t-card">Coding agent</text>
+<text x="624" y="546" class="t-card2">Claude Code or Gemini CLI</text>
+<rect x="560" y="595" width="280" height="70" rx="8" class="card"/>
+<use href="#g-proc" x="574" y="610"/>
+<text x="624" y="625" class="t-card">Compromised dependency</text>
+<text x="624" y="646" class="t-card2">runs with the tests; finds no key</text>
+<path d="M556 530 C470 530 460 555 374 555" class="arrow" marker-end="url(#ah)"/>
+<path d="M556 630 C460 630 470 575 374 575" class="arrow" marker-end="url(#ah)"/>
+<rect x="1160" y="560" width="230" height="70" rx="8" class="card"/>
+<use href="#g-md" x="1174" y="575"/>
+<text x="1224" y="590" class="t-card">Metadata server</text>
+<text x="1224" y="611" class="t-card2">outside the sandbox only</text>
+<path d="M1100 595 H1156" stroke="#D93025" stroke-width="2" stroke-dasharray="6 5" fill="none"/>
+<circle cx="1135" cy="595" r="13" fill="#FFFFFF" stroke="#D93025" stroke-width="2"/>
+<path d="M1129 589 l12 12 M1141 589 l-12 12" stroke="#D93025" stroke-width="2.5"/>
+<text x="40" y="758" class="t-src">Tested 2026-11-08 with Claude Code 2.1.319 and Gemini CLI 0.67.0. The gateway accepts only POST to model endpoints, drops any credential the client sends, and caps requests per backend.</text>
 </svg></body></html>

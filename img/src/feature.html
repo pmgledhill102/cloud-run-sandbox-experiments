@@ -1,0 +1,47 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="_style.css"></head><body>
+<!-- Medium feature image. Read at about 160x107 in Medium's feed and digest
+     emails, so: few shapes, very large, almost no text. The canvas is 2:1 for
+     share cards; everything sits inside the central 3:2 area (x 175..1225),
+     which is what the feed and email crops keep. -->
+<svg width="1400" height="700" viewBox="0 0 1400 700" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <marker id="ahg" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#188038"/></marker>
+  <filter id="sh" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#3C4043" flood-opacity=".2"/></filter>
+</defs>
+<rect width="1400" height="700" fill="#F8F9FA"/>
+<!-- render.js checks that Roboto 400 loaded; every visible label is bold, so
+     this off-canvas glyph makes the browser fetch the regular face too. -->
+<text x="-50" y="-50" style="font-size:16px;font-weight:400">.</text>
+
+<!-- One container: the sandbox and the proxy are both inside it -->
+<rect x="176" y="88" width="776" height="526" rx="34" fill="#E8F0FE" stroke="#1A73E8" stroke-width="6"/>
+<text x="206" y="138" style="font-size:36px;font-weight:700;fill:#1967D2">One container</text>
+<!-- Sandbox: a closed box with code in it -->
+<rect x="200" y="160" width="330" height="380" rx="28" fill="#E6F4EA" stroke="#34A853" stroke-width="7" stroke-dasharray="22 14"/>
+<rect x="275" y="235" width="180" height="150" rx="20" fill="#5F6368" filter="url(#sh)"/>
+<path d="M312 278 l38 32 l-38 32 M368 352 h50" stroke="#fff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<text x="365" y="480" text-anchor="middle" style="font-size:52px;font-weight:700;fill:#137333">Sandbox</text>
+
+<!-- The pipe -->
+<path d="M530 310 H720" stroke="#1967D2" stroke-width="44" fill="none"/>
+<path d="M545 310 H705" stroke="#AECBFA" stroke-width="10" stroke-linecap="round" stroke-dasharray="24 18" fill="none"/>
+<text x="625" y="410" text-anchor="middle" style="font-size:40px;font-weight:700;fill:#1967D2;font-family:'Roboto Mono',Roboto,monospace">stdin</text>
+<text x="625" y="458" text-anchor="middle" style="font-size:40px;font-weight:700;fill:#1967D2;font-family:'Roboto Mono',Roboto,monospace">stdout</text>
+
+<!-- The allowlist proxy -->
+<circle cx="815" cy="310" r="108" fill="#FFFFFF" filter="url(#sh)"/>
+<path d="M815 222 L885 252 L885 305 C885 350 852 380 815 396 C778 380 745 350 745 305 L745 252 Z" fill="#34A853"/>
+<path d="M778 308 L805 335 L855 282" stroke="#fff" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+<!-- Two allowed, one refused -->
+<path d="M923 300 C980 290 1000 200 1075 190" stroke="#188038" stroke-width="12" fill="none" marker-end="url(#ahg)"/>
+<path d="M923 310 H1075" stroke="#188038" stroke-width="12" fill="none" marker-end="url(#ahg)"/>
+<path d="M923 320 C980 330 1000 420 1060 432" stroke="#D93025" stroke-width="12" stroke-dasharray="20 14" fill="none"/>
+<circle cx="1145" cy="180" r="50" fill="#188038"/>
+<path d="M1122 180 l16 16 l30 -32" stroke="#fff" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<circle cx="1145" cy="310" r="50" fill="#188038"/>
+<path d="M1122 310 l16 16 l30 -32" stroke="#fff" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<circle cx="1135" cy="440" r="50" fill="#FFFFFF" stroke="#D93025" stroke-width="11"/>
+<path d="M1115 420 l40 40 M1155 420 l-40 40" stroke="#D93025" stroke-width="13" stroke-linecap="round"/>
+<text x="815" y="480" text-anchor="middle" style="font-size:52px;font-weight:700;fill:#202124">Allowlist</text>
+</svg></body></html>

@@ -8,8 +8,8 @@ outcome matched the earlier runs.*
 
 Cloud Run sandboxes, in preview as I write, let a container run code it
 doesn't trust with **no network at all**: no DNS, no route out, no metadata
-server. With one flag, `--allow-egress`, the sandbox gets everything the host
-can reach instead.
+server. With one flag, `--allow-egress`, the sandbox gets everything the
+container can reach instead.
 
 Most untrusted code needs something in between. A CI job needs GitHub and a
 package registry. A coding agent needs its model's API and the same
@@ -17,8 +17,9 @@ registries. Neither should reach anything else, and above all not the
 metadata server, which hands out the container's cloud credentials.
 
 I built that middle ground without any network products. The sandbox's
-connections travel over its own stdin and stdout to a proxy outside it,
-which allows only the listed hosts. This write-up covers how the connections
+connections travel over its own stdin and stdout to a proxy just outside
+it, in the same container, which allows only the listed hostnames. This
+write-up covers how the connections
 cross the sandbox boundary, the proxy, two workloads I ran through it
 (GitHub Actions jobs, and coding agents using Claude Code and Gemini CLI),
 and what the tests showed it doesn't protect.
@@ -47,13 +48,22 @@ the container starts isolated processes. By default a sandbox:
 The documentation describes "sudo privileges as a non-root user", which is
 not what I observed.
 
+**Everything runs in one container.** A sandbox isn't a separate service or
+a second container: it's a child process that the container starts with
+`sandbox do`. Everything below, the proxy, the bridge and the model gateway,
+runs as ordinary processes in that same container, outside the sandbox, and
+nothing else is deployed. Google's documentation calls that container the
+*host container*, so in this write-up **the host** means the container's own
+processes, outside the sandbox. The only traffic that leaves the Cloud Run
+instance is the proxy's and the gateway's connections to allowed hostnames.
+
 ## The requirement
 
 An untrusted process, such as a CI job or a coding agent, needs
 **selected** HTTPS endpoints: an allowlist of hostnames. It must not get general network access, and it must never reach
 the metadata server, which would hand it the container's service-account
-token. A trusted host process makes every policy decision and holds every
-privilege.
+token. A trusted process in the container, outside the sandbox, makes
+every policy decision and holds every privilege.
 
 I also wanted this without network infrastructure. This is a hobby-scale
 estate, and the managed options either can't express the policy or cost more
@@ -137,15 +147,16 @@ written.
 The same layout as text, with the program names:
 
 ```text
-host container (trusted: has egress and the metadata server)
-  egress-proxy               on a Unix socket; allowlist + resolution checks
-  stdio-bridge host          runs `sandbox do` as its child, owns its stdin/stdout
-        │  yamux session over that one pipe pair
-        │  each stream starts with a target name: "proxy\n"
-        ▼
-sandbox (no network, no metadata server)
-  stdio-bridge inside        listens on 127.0.0.1:3128, one stream per connection
-  untrusted process          HTTPS_PROXY=http://127.0.0.1:3128
+one Cloud Run instance, one container
+├─ outside the sandbox (trusted: has egress and the metadata server)
+│    egress-proxy             on a Unix socket; allowlist + resolution checks
+│    stdio-bridge host        runs `sandbox do` as its child, owns its stdin/stdout
+│          │  yamux session over that one pipe pair
+│          │  each stream starts with a target name: "proxy\n"
+│          ▼
+└─ sandbox (no network, no metadata server)
+     stdio-bridge inside      listens on 127.0.0.1:3128, one stream per connection
+     untrusted process        HTTPS_PROXY=http://127.0.0.1:3128
 ```
 
 **The simple model** is one connection: the host pipes the sandbox's stdout
@@ -157,7 +168,7 @@ both ends. The host end starts the sandbox *as its own child process*, so it
 owns that process's stdin and stdout, and runs a
 [yamux](https://github.com/hashicorp/yamux) session over the pair. Inside,
 `stdio-bridge inside` listens on `127.0.0.1:3128`. Each accepted connection
-becomes a yamux stream, which begins with the name of the host service it
+becomes a yamux stream, which begins with the name of the service it
 wants (`proxy`, say) and a newline. The host end dials only names it was
 configured with, each to its own Unix socket.
 
@@ -248,9 +259,10 @@ GitHub ──workflow_job webhook──▶ receiver (public; verifies the signat
                                    │ starts one job execution
                                    ▼
 runner job execution
-  ├─ host container: launcher, egress proxy, build broker  ──▶ internet
-  │                     ▲ the sandbox's stdin and stdout
-  └─ sandbox: the GitHub runner and every job step
+  └─ one container
+       ├─ outside the sandbox: launcher, egress proxy, build broker  ──▶ internet
+       │                     ▲ the sandbox's stdin and stdout
+       └─ sandbox: the GitHub runner and every job step
 ```
 
 The runner takes one job and exits, and the execution ends with it. That's
@@ -348,20 +360,22 @@ API and the package registries, and nothing else. It also needs a credential
 for the model API, which a network allowlist doesn't help with: a key inside
 the sandbox can be read by anything the agent runs.
 
-So the model credential stays on the host as well. The bridge already carries
-several named host services, so a second service next to the proxy needed
-only configuration: a small **model gateway** in the host container.
+So the model credential stays outside the sandbox as well. The bridge
+already carries several named services, so a second service next to the
+proxy needed only configuration: a small **model gateway**, one more process
+in the same container.
 
-![The model credential stays on the host](img/fig8-model-gateway.png)
+![The model credential stays outside the sandbox](img/fig8-model-gateway.png)
 
 The same layout as text:
 
 ```text
-sandbox (no network)                 host container (trusted)
+one Cloud Run instance, one container
+sandbox (no network)                 outside the sandbox (trusted)
   agent ── 127.0.0.1:3128 ─┐           egress-proxy    allowlist: package registries
            127.0.0.1:8080 ─┤ stdin/    model-gateway
            127.0.0.1:8081 ─┘ stdout ──▶  claude: + key from Secret Manager ──▶ Anthropic API
-                                         gemini: + host's own token       ──▶ Vertex AI
+                                         gemini: + the job's own token    ──▶ Vertex AI
 ```
 
 - **The agent talks plain HTTP to a local port**, with a placeholder key:
